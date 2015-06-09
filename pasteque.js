@@ -9,21 +9,36 @@
 					type: "@"
 				},
 				link: function(scope, element, attrs) {
+					console.log('enter');
 					var container = document.createElement('div');
 					container.className = "containerChart";
 					var incrementDegre = 0;
 					var valueTotal = 1; //1 = 100%
 
-					scope.$watch('data', function() {
+					scope.$watch('data', function(newVal, oldVal) {
 				    if(scope.data === undefined) return;
+				    //console.log(scope.data);
 
 				    // at this point it is defined, do work
-				    if(scope.type === 'pie' || scope.type === 'donut') {
-				    	roundedElement(scope.data.value, valueTotal, scope.data.bgColor);
-				    }else {
-				    	lineChart(scope.data);
+				    switch(scope.type){
+				    	case 'pie':
+				    		roundedElement(scope.data.value, valueTotal, scope.data.bgColor);
+				    		break;
+				    	case 'donut':
+				    		console.log(scope.data);
+				    		roundedElement(scope.data.value, valueTotal, scope.data.bgColor);
+				    		break;
+				    	case 'line':
+				    		lineChart(scope.data);
+				    		break;
+				    	case 'progressbar':
+				    		progressBar(scope.data);
+				    		break;
+				    	default:
+				    		console.warn('error !');
+				    		break;
 				    }
-				  });
+				  }, false);
 				  container.className += ' '+scope.type;
 
 				  //Function rounded chart Pie and Donut
@@ -178,7 +193,37 @@
 
 	        }
 
+	        function progressBar(objValue) {
+	        	var progressEl = document.createElement('ul');
+	        	progressEl.className = "ul-reset";
+	        	//console.log(objValue);
+	        	for(var o in objValue) {
+	        		//console.log(o);
+	        		var liElement = document.createElement('li');
+	        		var legend = document.createElement('span');
+	        		legend.textContent = objValue[o].legend;
+	        		legend.className = "legend";
+	        		liElement.appendChild(legend);
+
+	        		var progEl = document.createElement('div');
+	        		progEl.className = "progressbarContainer";
+	        		var value = document.createElement('div');
+	        		value.className = "valueProgress";
+	        		var spanValue = document.createElement('span');
+	        		var convertedValue = globalFunction.convertPercent(objValue[o].value, 1);
+	        		value.style.width = convertedValue + "%";
+	        		spanValue.textContent = convertedValue + "%";
+	        		value.appendChild(spanValue);
+	        		progEl.appendChild(value);
+
+	        		liElement.appendChild(progEl);
+	        		progressEl.appendChild(liElement);
+	        	}
+	        	container.appendChild(progressEl);
+	        }
+
 	        // Append to DOM
+	        //console.log(container);
 	        element.append(container);
 	        
 				}
