@@ -9,7 +9,6 @@
 					type: "@"
 				},
 				link: function(scope, element, attrs) {
-					console.log('enter');
 					var container = document.createElement('div');
 					container.className = "containerChart";
 					var incrementDegre = 0;
@@ -25,7 +24,6 @@
 				    		roundedElement(scope.data.value, valueTotal, scope.data.bgColor);
 				    		break;
 				    	case 'donut':
-				    		console.log(scope.data);
 				    		roundedElement(scope.data.value, valueTotal, scope.data.bgColor);
 				    		break;
 				    	case 'line':
