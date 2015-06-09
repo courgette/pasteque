@@ -1,0 +1,275 @@
+@sizePie:200px;
+
+.info-message {
+	margin-bottom: 2em;
+	li:before {
+		vertical-align: middle;
+  	position: relative;
+  	top: -0.15em;
+  	margin-right: 0.4em;
+	}
+	.icon-tag:before {
+		left: 0.1em;
+	}
+}
+
+.stats h2 {
+	font-size: 1.6em;
+	text-align: center;
+}
+
+.bigText {
+	font-size: 2em;
+	font-weight: 700;
+	text-align: center;
+}
+
+.containerChart {
+	position: relative;
+	min-height: @sizePie;
+	width: @sizePie;
+	margin: auto;
+}
+
+.pie {
+	width: @sizePie;
+	margin: auto;
+}
+
+.pie:before {
+	content: "";
+	position: absolute;
+	width:@sizePie;
+	height:@sizePie;
+	border-radius:@sizePie/2;
+	background: #CCC;
+}
+
+.chartDonut {
+	h2 { text-align: center; }
+}
+
+.donut:before {
+	content: "";
+	position: absolute;
+	width:@sizePie;
+	height:@sizePie;
+	border-radius:@sizePie/2;
+	background: #CCC;
+}
+
+.donut:after {
+	content: "";
+	position: absolute;
+	width: @sizePie*0.60;
+	height: @sizePie*0.60;
+	border-radius:@sizePie/2;
+	background: #FFF;
+	top: (@sizePie*0.40)/2;
+	left: (@sizePie*0.40)/2;
+}
+
+.legendDonut {
+	position: absolute;
+	z-index: 1;
+	font-size: @sizePie/6;
+	top: @sizePie/2.666;
+	width: @sizePie;
+	text-align: center;
+	font-weight: 700;
+}
+
+.mask {
+	width:@sizePie;
+	height:@sizePie;
+	clip:rect(0px,@sizePie,@sizePie,@sizePie/2);
+	position: absolute;
+}
+
+.round {
+	width:@sizePie;
+	height:@sizePie;
+	clip:rect(0px,@sizePie/2,@sizePie,0px);
+	border-radius:@sizePie/2;
+	position: absolute;
+}
+
+.mask.gt50 {
+	clip:rect(auto, auto, auto, auto);
+}
+.round.fill {
+	transform:rotate(180deg) !important;
+}
+
+.elementLegend {
+	margin: 0 0 1em @sizePie + 30px;
+	max-width: 17em;
+	overflow: hidden;
+	span[class*="bg"] {
+		width: 2em;
+		height: 2em;
+		display: inline-block;
+		margin-right: 1em;
+		vertical-align: middle;
+	}
+	.valueLegend {
+		float: right;
+	}
+}
+
+.container-global-stats {
+	margin-top: 4em;
+}
+
+.links_table {
+	thead {
+		text-align: left;
+	}
+}
+
+.container_links {
+	h2 {
+		text-align: left;
+	}
+}
+
+.exportCSV {
+	position: absolute;
+	top: 0.5em;
+	right: 0;
+}
+
+/*========== Chart line ===========*/
+
+.containerChart.line {
+	position: relative;
+	height: 400px;
+	width: 80%;
+	margin: 0;
+	ul {
+		margin: 0;
+	}
+}
+
+.yChartLine {
+	border-right: 1px solid #CCC;
+	width: 5em;
+	height: 100%;
+	text-align: center;
+	li { line-height: 0;}
+}
+
+.valueChart {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 5%;
+	z-index: 1;
+	li {
+		position: absolute;
+		text-align: center;
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			margin-left: -20px;
+			width: 0.6em;
+			height: 0.6em;
+			border-radius: 90px;
+			margin-top: -4px;
+		}
+	}
+}
+
+.lineSpan {
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	top: 0;
+	margin-left: -16px;
+	transform-origin: 0 0;
+}
+
+.line-1 {
+	.lineSpan {
+		background: @blue;
+	}
+	li:before {
+		background: @blue;
+	}
+}
+.line-2 {
+	.lineSpan {
+		background: @orange;
+	}
+	li:before {
+		background: @orange;
+	}
+}
+.line-3 {
+	.lineSpan {
+		background: @green;
+	}
+	li:before {
+		background: @green;
+	}
+}
+.textLineData {
+	position: absolute;
+	margin-left: -20px;
+	margin-top: 10px;
+}
+
+.upTextLine {
+	.textLineData {
+		margin-top: -30px;
+	}
+}
+
+.xChartLine {
+	overflow: hidden;
+	width: 118%;
+	&:before {
+		content: "";
+		border-top: 1px solid #CCC;
+		width: 100%;
+		display: block;
+		position: absolute;
+		left: 80px;
+		bottom: 0;
+	}
+	li {
+		float: left;
+		text-align: center;
+		padding: 1em 0;
+		position: relative;
+		text-indent: 5%;
+	}
+}
+.legendLine {
+	border: 1px solid #CCC;
+	position: absolute;
+	bottom: 4em;
+	right: -26%;
+	padding: 1.5em;
+	background: #FFF;
+	width: 12em;
+	li {
+		position: relative;
+		padding-left: 1.5em;
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0.25em;
+			left: 0;
+			width: 1em;
+			height: 1em;
+			border-radius: 2px;
+			vertical-align: text-bottom;
+		}
+	}
+	.legend-1:before { background: @blue; }
+	.legend-2:before { background: @orange; }
+	.legend-3:before { background: @green; }
+}
